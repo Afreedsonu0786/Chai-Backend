@@ -32,7 +32,7 @@ const userSchema = new Schema(
     coverImage: {
       type: String,
     },
-    watchHistort: [
+    watchHistorty: [
       {
         type: Schema.Types.ObjectId,
         ref: "Video",
