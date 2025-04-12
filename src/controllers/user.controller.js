@@ -154,8 +154,8 @@ const logoutUser = asyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(
     req.user._id,
     {
-      $set: {
-        refreshToken: undefined,
+      $unset: {
+        refreshToken: 1,
       },
     },
     {
@@ -175,7 +175,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
   const incomingRefreshToken =
-    req.cookkies.refreshToken || req.body.refreshToken;
+    req.cookies.refreshToken || req.body.refreshToken;
   if (!incomingRefreshToken) {
     throw new ApiErrors(401, "unauthorized request");
   }
